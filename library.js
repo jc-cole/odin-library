@@ -8,18 +8,22 @@ function Book(title, author, pages) {
 
 function addBookToLibrary(title, author, pages) {
     myLibrary.push(new Book(title, author, pages));
+    console.log(myLibrary)
 }
 
 function displayBooks() {
 
+    let card = document.querySelector(".book").cloneNode(true);
+
+    document.querySelector("main").innerHTML = "";
+
     myLibrary.forEach((book) => {
-        let card = document.querySelector(".book").cloneNode(true);
-        console.log(card.childNodes)
-        card.querySelector(".title").textContent = book.title;
-        card.querySelector(".author").textContent = book.author;
-        card.querySelector(".pages").textContent = book.pages;
-        card.className = "book visible";
-        document.querySelector("main").appendChild(card);
+        let newCard = card.cloneNode(true);
+        newCard.querySelector(".title").textContent = book.title;
+        newCard.querySelector(".author").textContent = book.author;
+        newCard.querySelector(".pages").textContent = book.pages;
+        newCard.className = "book visible";
+        document.querySelector("main").appendChild(newCard);
     })
 }
 
@@ -32,4 +36,3 @@ document.querySelector("form button").addEventListener("click", (event) => {
     displayBooks();
 });
 console.log(myLibrary);
-displayBooks();
